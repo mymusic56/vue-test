@@ -1,15 +1,12 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import ElementUI from 'element-ui'
 import App from './App.vue'
-import routers from './router.js'
-
-Vue.use(VueRouter)
-
-var router = new VueRouter({
-  routes: routers
-})
+import router from './router.js'
 
 Vue.config.productionTip = false
+
+Vue.use(ElementUI)
+
 
 new Vue({
   router,

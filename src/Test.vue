@@ -21,7 +21,7 @@
       <!--
       插槽的用法
        -->
-      <todo-item v-for="(v, k) in list" :key="v">
+      <todo-item3 v-for="(v, k) in list" :key="v" :abc="msg">
         <!--
         slot="" 是2.6之前的语法
         -->
@@ -32,17 +32,23 @@
         <!--</template>-->
 
 
-        <template v-slot:helloworld="slotStyle">
-          <span :style="{fontSize: '30px',color: slotStyle.checked ? 'blue' : 'yellow'}">{{k}} -- {{v}} {{slotStyle.abcinfo}}</span>
+        <!--slotResult:访问子组件中的数据-->
+        <!--怎样获取这些数据并在控制台打印出来呢？？？-->
+        <template v-slot:helloworld="slotResult">
+          <span :style="{fontSize: '30px',color: slotResult.checked ? 'blue' : 'green'}">{{k}} -- {{v}} {{slotResult.abcinfo}}</span>
         </template>
 
-      </todo-item>
+        <template v-slot:slot2>
+          <span>slot2: {{v}}</span>
+        </template>
+
+      </todo-item3>
     </ul>
   </div>
 </template>
 
 <script>
-  import TodoItem from './components/TodoItemV2.vue'
+  import TodoItem3 from './components/TodoItemV2.vue'
 
   export default {
     name: 'app',
@@ -50,7 +56,7 @@
         prosMsg: String
     },
     components: {
-      TodoItem
+      TodoItem3
     },
     data: function () {
       return {

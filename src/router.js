@@ -10,13 +10,14 @@ const routes = [
         component: () => import('@/views/user/User'),
         children: [
             {
-                name: '用户信息',
+                name: '展示用户信息',
                 path: 'show',
                 component: () => {
                     return import('@/views/user/show')
                 }
             },
             {
+                name: "修改用户信息",
                 path: 'posts',
                 component: () => import('@/views/user/posts')
             }

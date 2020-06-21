@@ -7,10 +7,19 @@
 
 </head>
 <body>
-<div id="app">{{msg}}
+<div id="app1">
+    <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+</div>
+<div id="app">
+    <p>{{msg}}</p>
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
     <!--
     API地址 : https://cn.vuejs.org/v2/api/
     指令：
+        v-html: 将类容转换成HTML
         v-model： 将数据和模板进行双向绑定, 不同的输入元素会使用不同的属性
         v-for:  迭代数据渲染元素
         v-on: 绑定事件
@@ -22,20 +31,47 @@
     <button v-on:click="addNew2">新增</button>
     <p>{{info}}</p>
     <ul>
+        <li v-for="val in dataList">{{val.id}}-{{val.title}}</li>
+    </ul>
+    <ul>
         <li v-for="(v,k) in list">{{k}}-{{v}}</li>
     </ul>
+
+    <p>{{ number + 1 }}</p>
+
+    <p>{{ ok ? 'YES' : 'NO' }}</p>
+
+    <p>{{ message.split('').reverse().join('') }}</p>
+    <p><a v-bind:href="url">跳转百度</a></p>
+
 </div>
 
 </body>
 <script>
+    var app2 = new Vue({
+        el: "#app1",
+        data: {
+            message: '页面加载于 ' + new Date().toLocaleString()
+        }
+    });
     new Vue({
         //el 可以是选择器，也可是DOM实例
         el: document.getElementById('app'),
         data: function () {
             return {
                 msg: 'hello world',
+                rawHtml: '<span style="color: red;">This is red.</span>',
+                number: 1,
+                ok: false,
+                message: 'abcde',
+                url: "https://www.baidu.com",
                 info: 'default value',
-                list: ['default']
+                list: ['default'],
+                dataList: [
+                    {id: 1, title: "zhangsan"},
+                    {id: 2, title: "lisi"},
+                    {id: 3, title: "wangwu"}
+                ]
             }
         },
         methods: {
@@ -53,6 +89,7 @@
             }
         }
     });
+
 
 </script>
 </html>

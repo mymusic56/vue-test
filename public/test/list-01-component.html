@@ -8,22 +8,13 @@
 </head>
 <body>
 <div id="app">{{msg}}
-    <!--
-    API地址 : https://cn.vuejs.org/v2/api/
-    指令：
-        v-model： 将数据和模板进行双向绑定, 不同的输入元素会使用不同的属性
-        v-for:  迭代数据渲染元素
-        v-on: 绑定事件
-            v-on:click缩写为@click： 添加点击事件，将info的值添加到list数组中
-
-    -->
     <input type="text" value="" v-model="info">
     <button @click="addNew">新增</button>
     <button v-on:click="addNew2">新增</button>
     <p>{{info}}</p>
     <ul>
         <!--<li v-for="(v,k) in list">{{k}}-{{v}}</li>-->
-        <todo-item v-for="(v, k) in list" :item="v" :key2="k"></todo-item>
+        <todo-item v-for="(v, k) in list" v-bind:item="v" :key2="k"></todo-item>
     </ul>
 </div>
 
@@ -54,7 +45,7 @@
                     this.info = ''//将输入框中的数据清空
                 }
             },
-            addNew2(){
+            addNew2: function () {
                 if (this.info) {
                     this.list.push(this.info+" addNew2");
                     this.info = ''//将输入框中的数据清空
@@ -65,8 +56,8 @@
 
     console.log(vm.$data.msg)
 
-    vm.$watch('info',function (a, b) {
-        console.log(a,b)
+    vm.$watch('info',function (newVal, oldVal) {
+        console.log(newVal, oldVal)
     });
 
 </script>

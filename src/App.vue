@@ -7,6 +7,7 @@
     <p>
       <router-link to="/gohome">默认首页</router-link>&nbsp;
       <router-link to="/gotest">Test页面</router-link>&nbsp;
+      <router-link to="/user/24">/user/24</router-link>&nbsp;
       <router-link to="/user/24/show">/user/24/show</router-link>&nbsp;
       <router-link to="/user/24/posts">/user/24/posts</router-link>&nbsp;
     </p>
